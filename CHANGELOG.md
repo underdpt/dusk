@@ -1,6 +1,28 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/dusk/compare/v7.7.1...7.x)
+## [Unreleased](https://github.com/laravel/dusk/compare/v7.9.3...7.x)
+
+## [v7.9.3](https://github.com/laravel/dusk/compare/v7.9.2...v7.9.3) - 2023-08-03
+
+- [7.x] Prevent interaction with `Http::preventStrayRequests` by [@joshbonnick](https://github.com/joshbonnick) in https://github.com/laravel/dusk/pull/1052
+
+## [v7.9.2](https://github.com/laravel/dusk/compare/v7.9.1...v7.9.2) - 2023-07-30
+
+- [7.x] Export ignore `testbench.yaml` file by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1048
+- [7.x] Fixes using `ChromeDriverCommand` with Telescope by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1050
+
+## [v7.9.1](https://github.com/laravel/dusk/compare/v7.9.0...v7.9.1) - 2023-07-27
+
+- Normalize directory separator on `ChromeDriverCommand` by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1045
+
+## [v7.9.0](https://github.com/laravel/dusk/compare/v7.8.0...v7.9.0) - 2023-07-24
+
+- Fix ChromeDriverCommand for ChromeDriver 115+ by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1043
+
+## [v7.8.0](https://github.com/laravel/dusk/compare/v7.7.1...v7.8.0) - 2023-07-08
+
+- Uses Collision's printer if possible by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/dusk/pull/1038
+- Fixed timeout error message that contain percent characters when calling waitForTextIn by [@voidgraphics](https://github.com/voidgraphics) in https://github.com/laravel/dusk/pull/1029
 
 ## [v7.7.1](https://github.com/laravel/dusk/compare/v7.7.0...v7.7.1) - 2023-04-13
 
