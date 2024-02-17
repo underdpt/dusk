@@ -1,6 +1,52 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/dusk/compare/v7.9.3...7.x)
+## [Unreleased](https://github.com/laravel/dusk/compare/v7.12.3...7.x)
+
+## [v7.12.3](https://github.com/laravel/dusk/compare/v7.12.2...v7.12.3) - 2024-02-15
+
+* Fixes console logs trying to create file containing `DIRECTORY_SEPARATOR` value from data provider name. by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1086
+
+## [v7.12.2](https://github.com/laravel/dusk/compare/v7.12.1...v7.12.2) - 2024-02-09
+
+* Add `assertAttributeMissing()` method by [@ziadoz](https://github.com/ziadoz) in https://github.com/laravel/dusk/pull/1083
+* Add PHPUnit data provider set name to output filenames by [@ziadoz](https://github.com/ziadoz) in https://github.com/laravel/dusk/pull/1084
+
+## [v7.12.1](https://github.com/laravel/dusk/compare/v7.12.0...v7.12.1) - 2024-01-03
+
+* Case insensitive assertions by [@Bryce-Stabenow](https://github.com/Bryce-Stabenow) in https://github.com/laravel/dusk/pull/1073
+
+## [v7.12.0](https://github.com/laravel/dusk/compare/v7.11.4...v7.12.0) - 2023-12-05
+
+* Add attribute does not contain assertion by [@ziadoz](https://github.com/ziadoz) in https://github.com/laravel/dusk/pull/1072
+
+## [v7.11.4](https://github.com/laravel/dusk/compare/v7.11.3...v7.11.4) - 2023-11-14
+
+- Limiting length of getCallerName return value to avoid issue when storing logs and screenshots by [@lk77](https://github.com/lk77) in https://github.com/laravel/dusk/pull/1070
+
+## [v7.11.3](https://github.com/laravel/dusk/compare/v7.11.2...v7.11.3) - 2023-10-17
+
+- Fixes unknown option "--ansi" and "--no-ansi" by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1068
+- Fixes `waitForTextIn()` broken in v7.11.2 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1067
+
+## [v7.11.2](https://github.com/laravel/dusk/compare/v7.11.1...v7.11.2) - 2023-10-10
+
+- Consistently use `WebDriverWait` available API for `WaitsForElements` trait instead of relying on `Carbon`. by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1062
+
+## [v7.11.1](https://github.com/laravel/dusk/compare/v7.11.0...v7.11.1) - 2023-09-26
+
+- Fix favicon 404s triggered when using loginAs() or logout() methods by [@ziadoz](https://github.com/ziadoz) in https://github.com/laravel/dusk/pull/1061
+
+## [v7.11.0](https://github.com/laravel/dusk/compare/v7.10.0...v7.11.0) - 2023-09-12
+
+- Add `Laravel\Dusk\Keyboard::pause()` helper method by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1057
+
+## [v7.10.0](https://github.com/laravel/dusk/compare/v7.9.4...v7.10.0) - 2023-09-04
+
+- Keyboard Support Improvements by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1053
+
+## [v7.9.4](https://github.com/laravel/dusk/compare/v7.9.3...v7.9.4) - 2023-08-28
+
+- Remove legacy Dotenv usage by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1054
 
 ## [v7.9.3](https://github.com/laravel/dusk/compare/v7.9.2...v7.9.3) - 2023-08-03
 

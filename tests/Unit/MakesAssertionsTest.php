@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Dusk\Tests;
+namespace Laravel\Dusk\Tests\Unit;
 
 use Facebook\WebDriver\Remote\RemoteWebElement;
 use Laravel\Dusk\Browser;
@@ -595,6 +595,35 @@ class MakesAssertionsTest extends TestCase
         }
     }
 
+    public function test_assert_attribute_missing()
+    {
+        $driver = m::mock(stdClass::class);
+
+        $element = m::mock(stdClass::class);
+        $element->shouldReceive('getAttribute')->with('bar')->andReturn(
+            null,
+            'joe',
+        );
+
+        $resolver = m::mock(stdClass::class);
+        $resolver->shouldReceive('format')->with('foo')->andReturn('Foo');
+        $resolver->shouldReceive('findOrFail')->with('foo')->andReturn($element);
+
+        $browser = new Browser($driver, $resolver);
+
+        $browser->assertAttributeMissing('foo', 'bar');
+
+        try {
+            $browser->assertAttributeMissing('foo', 'bar');
+            $this->fail();
+        } catch (ExpectationFailedException $e) {
+            $this->assertStringContainsString(
+                'Saw unexpected attribute [bar] within element [Foo].',
+                $e->getMessage()
+            );
+        }
+    }
+
     public function test_assert_attribute_contains()
     {
         $driver = m::mock(stdClass::class);
@@ -630,6 +659,46 @@ class MakesAssertionsTest extends TestCase
         } catch (ExpectationFailedException $e) {
             $this->assertStringContainsString(
                 "Attribute 'bar' does not contain [class-b]. Full attribute value was [class-1 class-2].",
+                $e->getMessage()
+            );
+        }
+    }
+
+    public function test_assert_attribute_does_not_contain()
+    {
+        $driver = m::mock(stdClass::class);
+
+        $element = m::mock(stdClass::class);
+        $element->shouldReceive('getAttribute')->with('bar')->andReturn(
+            'class-a class-b',
+            null,
+            'class-1 class-2'
+        );
+
+        $resolver = m::mock(stdClass::class);
+        $resolver->shouldReceive('format')->with('foo')->andReturn('Foo');
+        $resolver->shouldReceive('findOrFail')->with('foo')->andReturn($element);
+
+        $browser = new Browser($driver, $resolver);
+
+        $browser->assertAttributeDoesntContain('foo', 'bar', 'class-c');
+
+        try {
+            $browser->assertAttributeDoesntContain('foo', 'bar', 'class-c');
+            $this->fail();
+        } catch (ExpectationFailedException $e) {
+            $this->assertStringContainsString(
+                'Did not see expected attribute [bar] within element [Foo].',
+                $e->getMessage()
+            );
+        }
+
+        try {
+            $browser->assertAttributeDoesntContain('foo', 'bar', 'class-1');
+            $this->fail();
+        } catch (ExpectationFailedException $e) {
+            $this->assertStringContainsString(
+                "Attribute 'bar' contains [class-1]. Full attribute value was [class-1 class-2].",
                 $e->getMessage()
             );
         }

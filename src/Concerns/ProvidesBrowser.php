@@ -232,7 +232,13 @@ trait ProvidesBrowser
             ? $this->name()
             : $this->getName(false); // @phpstan-ignore-line
 
-        return str_replace('\\', '_', get_class($this)).'_'.$name;
+        $parts = array_filter([
+            str_replace('\\', '_', get_class($this)),
+            $name,
+            str_replace(['\\', DIRECTORY_SEPARATOR, ' '], ['', '', '_'], $this->dataName()),
+        ], fn ($part) => $part !== '');
+
+        return substr(implode('_', $parts), -140);
     }
 
     /**
