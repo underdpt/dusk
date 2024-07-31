@@ -1,6 +1,45 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/dusk/compare/v7.12.3...7.x)
+## [Unreleased](https://github.com/laravel/dusk/compare/v8.2.2...8.x)
+
+## [v8.2.2](https://github.com/laravel/dusk/compare/v8.2.1...v8.2.2) - 2024-07-24
+
+* fix: DuskTestCase driver function fails to read the DUSK_DRIVER_URL environment variable by [@robinstraub](https://github.com/robinstraub) in https://github.com/laravel/dusk/pull/1108
+* [8.x] Fixes installing ChromeDriver 127 and above by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1110
+
+## [v8.2.1](https://github.com/laravel/dusk/compare/v8.2.0...v8.2.1) - 2024-07-08
+
+* Fix docblock by [@u01jmg3](https://github.com/u01jmg3) in https://github.com/laravel/dusk/pull/1106
+
+## [v8.2.0](https://github.com/laravel/dusk/compare/v8.1.2...v8.2.0) - 2024-04-16
+
+* `assertPathEndsWith()` and `assertPathContains()` by [@u01jmg3](https://github.com/u01jmg3) in https://github.com/laravel/dusk/pull/1100
+
+## [v8.1.2](https://github.com/laravel/dusk/compare/v8.1.1...v8.1.2) - 2024-04-16
+
+* Move `hasHeadlessDisabled()` and `shouldStartMaximized()` to `Laravel\Dusk\TestCase` by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1098
+
+## [v8.1.1](https://github.com/laravel/dusk/compare/v8.1.0...v8.1.1) - 2024-03-28
+
+* Remove PHPUnit 9 configuration stub by [@ziadoz](https://github.com/ziadoz) in https://github.com/laravel/dusk/pull/1097
+
+## [v8.1.0](https://github.com/laravel/dusk/compare/v8.0.0...v8.1.0) - 2024-03-25
+
+* [8.x] Make commands lazy by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/dusk/pull/1092
+* New Helper `elementScreenshot` by [@rabrowne85](https://github.com/rabrowne85) in https://github.com/laravel/dusk/pull/1093
+* Support Dusk Selectors in `screenshotElement` by [@rabrowne85](https://github.com/rabrowne85) in https://github.com/laravel/dusk/pull/1094
+* [8.x] Separate `dump()` and `dd()` usage for consistency by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1096
+
+## [v8.0.0](https://github.com/laravel/dusk/compare/v7.13.0...v8.0.0) - 2024-03-12
+
+* Uses `Tests\CreatesApplication` only if exists by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/dusk/pull/1074
+* Drop PHPUnit 9 and limits Laravel supported versions to 10 and 11 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1077
+* Remove `nesbot/carbon` dependencies by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/dusk/pull/1079
+* [8.x] Better integrates Pest by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/dusk/pull/1082
+
+## [v7.13.0](https://github.com/laravel/dusk/compare/v7.12.3...v7.13.0) - 2024-02-23
+
+* Add `component()` method to get scoped Browser instance by [@ziadoz](https://github.com/ziadoz) in https://github.com/laravel/dusk/pull/1087
 
 ## [v7.12.3](https://github.com/laravel/dusk/compare/v7.12.2...v7.12.3) - 2024-02-15
 

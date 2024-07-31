@@ -4,6 +4,7 @@ namespace Laravel\Dusk\Tests\Unit;
 
 use Laravel\Dusk\Concerns\ProvidesBrowser;
 use Mockery as m;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -27,9 +28,7 @@ class ProvidesBrowserTest extends TestCase
         $this->captureFailuresFor($browsers);
     }
 
-    /**
-     * @dataProvider data
-     */
+    #[DataProvider('data')]
     public function test_capture_failures_for_data()
     {
         $browser = m::mock(stdClass::class);
@@ -41,9 +40,7 @@ class ProvidesBrowserTest extends TestCase
         $this->captureFailuresFor($browsers);
     }
 
-    /**
-     * @dataProvider data
-     */
+    #[DataProvider('data')]
     public function test_store_console_logs_for_data()
     {
         $browser = m::mock(stdClass::class);
@@ -55,9 +52,7 @@ class ProvidesBrowserTest extends TestCase
         $this->storeConsoleLogsFor($browsers);
     }
 
-    /**
-     * @dataProvider data
-     */
+    #[DataProvider('data')]
     public function test_truncate_test_name_where_that_name_is_really_really_really_too_long_and_might_cause_issues_data()
     {
         $browser = m::mock(stdClass::class);
