@@ -68,7 +68,12 @@ class DuskCommand extends Command
 
         $options = collect($_SERVER['argv'])
             ->slice(2)
-            ->diff(['--browse', '--without-tty'])
+            ->diff([
+                '--browse', '--without-tty',
+                '--quiet', '-q',
+                '--verbose', '-v', '-vv', '-vvv',
+                '--no-interaction', '-n',
+            ])
             ->values()
             ->all();
 
@@ -251,7 +256,7 @@ class DuskCommand extends Command
         try {
             return $callback();
         } finally {
-            $this->teardownDuskEnviroment();
+            $this->teardownDuskEnvironment();
         }
     }
 
@@ -326,7 +331,7 @@ class DuskCommand extends Command
             pcntl_async_signals(true);
 
             pcntl_signal(SIGINT, function () {
-                $this->teardownDuskEnviroment();
+                $this->teardownDuskEnvironment();
             });
         }
     }
@@ -336,7 +341,7 @@ class DuskCommand extends Command
      *
      * @return void
      */
-    protected function teardownDuskEnviroment()
+    protected function teardownDuskEnvironment()
     {
         $this->removeConfiguration();
 

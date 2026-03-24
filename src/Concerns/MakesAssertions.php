@@ -157,11 +157,12 @@ trait MakesAssertions
      * Assert that the given text is not present on the page.
      *
      * @param  string  $text
+     * @param  bool  $ignoreCase
      * @return $this
      */
-    public function assertDontSee($text)
+    public function assertDontSee($text, $ignoreCase = false)
     {
-        return $this->assertDontSeeIn('', $text);
+        return $this->assertDontSeeIn('', $text, $ignoreCase);
     }
 
     /**
@@ -174,6 +175,10 @@ trait MakesAssertions
      */
     public function assertSeeIn($selector, $text, $ignoreCase = false)
     {
+        if ($text === '') {
+            return $this->assertSeeNothingIn($selector);
+        }
+
         $fullSelector = $this->resolver->format($selector);
 
         $element = $this->resolver->findOrFail($selector);
@@ -191,16 +196,17 @@ trait MakesAssertions
      *
      * @param  string  $selector
      * @param  string  $text
+     * @param  bool  $ignoreCase
      * @return $this
      */
-    public function assertDontSeeIn($selector, $text)
+    public function assertDontSeeIn($selector, $text, $ignoreCase = false)
     {
         $fullSelector = $this->resolver->format($selector);
 
         $element = $this->resolver->findOrFail($selector);
 
         PHPUnit::assertFalse(
-            Str::contains($element->getText(), $text),
+            Str::contains($element->getText(), $text, $ignoreCase),
             "Saw unexpected text [{$text}] within element [{$fullSelector}]."
         );
 
@@ -242,6 +248,26 @@ trait MakesAssertions
         PHPUnit::assertTrue(
             $element->getText() === '',
             "Did not see expected text [''] within element [{$fullSelector}]."
+        );
+
+        return $this;
+    }
+
+    /**
+     * Assert that a given element is present a given amount of times.
+     *
+     * @param  string  $selector
+     * @param  int  $expected
+     * @return $this
+     */
+    public function assertCount($selector, $expected)
+    {
+        $fullSelector = $this->resolver->format($selector);
+
+        PHPUnit::assertCount(
+            $expected,
+            $this->resolver->all($selector),
+            "Expected element [{$fullSelector}] exactly {$expected} times."
         );
 
         return $this;
@@ -825,14 +851,11 @@ JS;
      */
     public function assertAttributeDoesntContain($selector, $attribute, $value)
     {
-        $fullSelector = $this->resolver->format($selector);
-
         $actual = $this->resolver->findOrFail($selector)->getAttribute($attribute);
 
-        PHPUnit::assertNotNull(
-            $actual,
-            "Did not see expected attribute [{$attribute}] within element [{$fullSelector}]."
-        );
+        if (is_null($actual)) {
+            return $this;
+        }
 
         PHPUnit::assertStringNotContainsString(
             $value,
@@ -1117,7 +1140,7 @@ JS;
     }
 
     /**
-     * Assert that a given Vue component data propertys is an array and contains the given value.
+     * Assert that a given Vue component data property is an array and contains the given value.
      *
      * @param  string  $key
      * @param  string  $value

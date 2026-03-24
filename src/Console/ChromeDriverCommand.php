@@ -109,7 +109,7 @@ class ChromeDriverCommand extends Command
 
         $message = 'ChromeDriver %s successfully installed for version %s.';
 
-        $this->info(sprintf($message, $all ? 'binaries' : 'binary', $version));
+        $this->components->info(sprintf($message, $all ? 'binaries' : 'binary', $version));
     }
 
     /**
@@ -182,7 +182,7 @@ class ChromeDriverCommand extends Command
             return $matches[1];
         }
 
-        $this->error('Chrome version could not be detected.');
+        $this->components->error('Chrome version could not be detected.');
 
         return false;
     }
